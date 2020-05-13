@@ -2,7 +2,7 @@ import * as Msal from 'msal'
 
 export default class AuthService {
   constructor () {
-    const PROD_REDIRECT_URI = 'https://vue-msal-sample.firebaseapp.com/'
+    const PROD_REDIRECT_URI = 'http://localhost:8081/callback'
     let redirectUri = window.location.origin
     if (window.location.hostname !== '127.0.0.1') {
       redirectUri = PROD_REDIRECT_URI
