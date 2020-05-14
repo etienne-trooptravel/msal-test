@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import AuthService from './services/auth.service'
-import GraphService from './services/graph.service'
+import AuthService from '@/msal'
 export default {
   name: 'app',
   data () {
@@ -37,14 +36,13 @@ export default {
   },
   created () {
     this.authService = new AuthService()
-    this.graphService = new GraphService()
   },
   methods: {
     callAPI () {
       this.apiCallFailed = false
-      this.authService.getToken().then(
+      this.authService.getGraphToken().then(
         token => {
-          this.graphService.getUserInfo(token).then(
+          this.authService.getGraphUserInfo(token).then(
             data => {
               this.userInfo = data
             },
@@ -65,7 +63,7 @@ export default {
     },
     login () {
       this.loginFailed = false
-      this.authService.login().then(
+      this.authService.loginPopup().then(
         user => {
           if (user) {
             this.user = user
