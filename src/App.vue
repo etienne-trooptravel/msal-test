@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import AuthService from './services/auth.service';
-import GraphService from './services/graph.service';
+import AuthService from './services/auth.service'
+import GraphService from './services/graph.service'
 export default {
   name: 'app',
-  data() {
+  data () {
     return {
       msg: 'Welcome to your Vue.js App',
       user: null,
@@ -35,48 +35,48 @@ export default {
       loginFailed: false
     }
   },
-  created() {
-    this.authService = new AuthService();
-    this.graphService = new GraphService();
+  created () {
+    this.authService = new AuthService()
+    this.graphService = new GraphService()
   },
   methods: {
-    callAPI() {
-      this.apiCallFailed = false;
+    callAPI () {
+      this.apiCallFailed = false
       this.authService.getToken().then(
         token => {
           this.graphService.getUserInfo(token).then(
             data => {
-              this.userInfo = data;
+              this.userInfo = data
             },
             error => {
-              console.error(error);
-              this.apiCallFailed = true;
+              console.error(error)
+              this.apiCallFailed = true
             }
-          );
+          )
         },
         error => {
-          console.error(error);
-          this.apiCallFailed = true;
+          console.error(error)
+          this.apiCallFailed = true
         }
-      );
+      )
     },
-    logout() {
-      this.authService.logout();
+    logout () {
+      this.authService.logout()
     },
-    login() {
-      this.loginFailed = false;
+    login () {
+      this.loginFailed = false
       this.authService.login().then(
         user => {
           if (user) {
-            this.user = user;
+            this.user = user
           } else {
-            this.loginFailed = true;
+            this.loginFailed = true
           }
         },
         () => {
-          this.loginFailed = true;
+          this.loginFailed = true
         }
-      );
+      )
     }
   }
 }
