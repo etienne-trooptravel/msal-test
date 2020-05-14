@@ -28,7 +28,7 @@ export default {
   name: 'app',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js + MSAL.js App',
+      msg: 'Welcome to your Vue.js App',
       user: null,
       userInfo: null,
       apiCallFailed: false,
